@@ -47,15 +47,19 @@ public class Main {
                 case 4:
                     System.out.printf("Введите номер элемента для удаления из массива: ");
                     int b = (scanner.nextInt());
-                    if  (b <= a.size()) {
+                    if (a.size() == 0) {
+                        System.out.println("Нельзя удалить элемент из пустого массива! Сначала введите элементы в массив!");
+                    }
+                    else if  (b > a.size()) {
+                        System.out.println("Элемента с таким номером не существует! Введите правильный номер!");
+
+                    }
+                    else {
                         a.remove(b);
                         for (int i = 0; i < a.size(); i++) {
                             System.out.printf("[%d] ", a.get(i));
                         }
                         System.out.println("\nРазмер массива равен '" + a.size() + "' элементам");
-                    }
-                    else {
-                        System.out.println("Элемента с таким номером не существует! Введите правильный номер!");
                     }
 
                     break;
