@@ -1,40 +1,71 @@
 package ru.itpark;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Введите число элементова массива");
+
+        ArrayList<Integer> a = new ArrayList<>(100);
+
+
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int a[];
-        a = new int[n];
 
-        for (int i = 0; i < a.length; i++) {
-            System.out.printf("а[%d]=",i);
+        System.out.println("МЕНЮ:");
+        System.out.println("1. Показать массив");
+        System.out.println("2. Добавить элемент в начало массива");
+        System.out.println("3. Добавить элемент в конец массива");
+        System.out.println("4. Удалить указанный элемент массива");
+        System.out.println("5. Выход");
 
-            a[i] = scanner.nextInt();
-            if (i % 2 != 0) {
+        while (true) {
+            int command = scanner.nextInt();
 
-                a[i] = 0;
+            switch (command) {
+                case 1:
+                    for (int i = 0; i < a.size(); i++) {
+                        System.out.printf("[%d] ", a.get(i));
+                    }
+                    System.out.println("\nРазмер массива равен '" + a.size() + "' элементам");
+
+                    break;
+                case 2:
+                    System.out.printf("Введите число для добавления в начало массива: ");
+                    a.add(0, scanner.nextInt());
+                    for (int i = 0; i < a.size(); i++) {
+                        System.out.printf("[%d] ", a.get(i));
+                    }
+                    System.out.println("\nРазмер массива равен '" + a.size() + "' элементам");
+                    break;
+                case 3:
+                    System.out.printf("Введите число для добавления в конец массива: ");
+                    a.add(scanner.nextInt());
+                    for (int i = 0; i < a.size(); i++) {
+                        System.out.printf("[%d] ", a.get(i));
+                    }
+                    System.out.println("\nРазмер массива равен '" + a.size() + "' элементам");
+                    break;
+                case 4:
+                    System.out.printf("Введите номер элемента для удаления из массива: ");
+                    int b = (scanner.nextInt());
+                    if  (b <= a.size()) {
+                        a.remove(b);
+                        for (int i = 0; i < a.size(); i++) {
+                            System.out.printf("[%d] ", a.get(i));
+                        }
+                        System.out.println("\nРазмер массива равен '" + a.size() + "' элементам");
+                    }
+                    else {
+                        System.out.println("Элемента с таким номером не существует! Введите правильный номер!");
+                    }
+
+                    break;
+                case 5:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Команда не верна!");
             }
         }
-        System.out.println("Получившийся массив:");
-        for (int i = 0; i< a.length; i++) {
-            System.out.print(a[i] + " ");
-        }
-
-        for (int i = 0; i < a.length/2; i++) {
-            int temp = a[i];
-            a[i] = a[(a.length)-1-i];
-            a[(a.length)-1-i] = temp;
-        }
-
-        System.out.println("\nРазвернутый массив:");
-        for (int i = 0; i< a.length; i++) {
-            System.out.print(a[i] + " ");
-        }
-
-
-	// write your code here
     }
 }
+
