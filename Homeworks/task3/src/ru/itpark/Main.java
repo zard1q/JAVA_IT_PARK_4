@@ -14,9 +14,9 @@ public class Main {
         System.out.println("\nРазмер массива равен '" + count + "' элементам");
     }
     //добавление элемента в начало массива
-    public static boolean unshift(int a[], int count) {
+    public static boolean addLeft(int a[], int count) {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Введите число для добавления в начало массива: ");
+        System.out.print("Введите число для добавления в начало массива: ");
 
         if (count >= a.length) {
             System.out.println("Массив полон! Сначала удалите какой-нибудь элемент!");
@@ -33,9 +33,9 @@ public class Main {
     }
 
     //добавление элемента в конеч массива
-    public static boolean push(int a[], int count) {
+    public static boolean addRight(int a[], int count) {
         Scanner scanner = new Scanner(System.in);
-        if (count > a.length) {
+        if (count >= a.length) {
             System.out.println("Массив полон! Сначала удалите какой-нибудь элемент!");
             return false;
         }
@@ -55,19 +55,34 @@ public class Main {
             System.out.println("Нельзя удалить элемент из пустого массива! Сначала введите элементы в массив!");
             return false;
         }
-        else if (index > count - 1) {
-            while (index > count - 1){
-            System.out.println("Элемента с таким номером не существует! Введите правильный номер: ");
-
-
-            return false;
-        }
         else {
-            for (int i = index; i < count; i++) {
-                a[i] = a[i + 1];
+            while (index > count - 1){
+                System.out.print("Элемента с таким номером не существует! Введите правильный номер: ");
+                index = (scanner.nextInt());
             }
+            if (index < a.length-1) {
+                for (int i = index; i < count; i++) {
+                    a[i] = a[i+1];
+                }
+            }
+            else a[index] = 0;
             return true;
+        }
+    }
 
+
+    //сортировка массива
+    public static void sort(int a[], int count) {
+        for (int i = 0; i < count; i++) {
+            int min = i;
+            for (int j = i;j < count; j++) {
+                if (a[min] > a[j]) {
+                        min = j;
+                }
+            }
+            int temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
         }
     }
 
@@ -76,8 +91,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        ArrayList<Integer> a = new ArrayList<>(100);
-        int a[] = new int[5];
+
+        int a[] = new int[100];
         int count = 0;
 
         Scanner scanner = new Scanner(System.in);
@@ -87,7 +102,8 @@ public class Main {
         System.out.println("2. Добавить элемент в начало массива");
         System.out.println("3. Добавить элемент в конец массива");
         System.out.println("4. Удалить указанный элемент массива");
-        System.out.println("5. Выход");
+        System.out.println("5. Сортировать массив по возрастанию");
+        System.out.println("6. Выход");
 
         while (true) {
             int command = scanner.nextInt();
@@ -97,13 +113,13 @@ public class Main {
                     output(a, count);
                     break;
                 case 2:
-                    if (unshift(a, count)) {
+                    if (addLeft(a, count)) {
                         count++;
                         output(a, count);
                     }
                     break;
                 case 3:
-                    if (push(a, count)) {
+                    if (addRight(a, count)) {
                         count++;
                         output(a, count);
                     }
@@ -116,6 +132,11 @@ public class Main {
                     }
                     break;
                 case 5:
+                    sort(a, count);
+                    output(a, count);
+                    break;
+
+                case 6:
                     System.exit(0);
                     break;
                 default:
