@@ -10,6 +10,7 @@ public class Main {
     public static void output(int a[], int count) {
         for (int i = 0; i < count; i++) {
             System.out.printf("[%d] ", a[i]);
+
         }
         System.out.println("\nРазмер массива равен '" + count + "' элементам");
     }

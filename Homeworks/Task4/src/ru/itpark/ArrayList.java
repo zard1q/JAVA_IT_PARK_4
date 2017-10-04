@@ -159,4 +159,9 @@ public class ArrayList {
         }
         return -1;
     }
+
+
+    public int size() {
+        return count;
+    }
 }
