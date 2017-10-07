@@ -37,9 +37,9 @@ public class ArrayList {
         if (count < elements.length) {
             for (int i = count - 1; i >= 0; i--) {
                 elements[i + 1] = elements[i];
-                elements[0] = element;
-                count++;
             }
+            elements[0] = element;
+            count++;
         } else {
 
             System.err.println("Нет места");
@@ -55,12 +55,13 @@ public class ArrayList {
      */
     public void insert(int element, int index) {
         if (count < elements.length) {
-            if ((index < count) & (index >= 0)) {
-                for (int i = count - 1; i >= element; i--) {
+            if ((index < count) && (index >= 0)) {
+                for (int i = count - 1; i >= index; i--) {
                     elements[i + 1] = elements[i];
-                    elements[index] = element;
-                    count++;
+
                 }
+                elements[index] = element;
+                count++;
             } else {
                 System.err.println("Неправильный индекс");
             }
@@ -93,8 +94,9 @@ public class ArrayList {
      * @param index
      * @param element
      */
-    public void replace(int index, int element) {
-        if ((index < count) & (index >= 0)) {
+    public void replace(int element, int index) {
+        if ((index < count) && (index >= 0)) {
+
             elements[index] = element;
         } else {
             System.err.println("Неправильный индекс");
@@ -161,7 +163,17 @@ public class ArrayList {
     }
 
 
-    public int size() {
-        return count;
+    public String output() {
+        String out = "";
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                out += "[" + elements[i] + "] ";
+
+            }
+        } else {
+            out = "Пуст";
+        }
+        return out;
     }
+
 }

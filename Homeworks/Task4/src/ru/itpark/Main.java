@@ -9,41 +9,51 @@ public class Main {
     public static void main(String[] args) {
         // инзачально это массив null
         ArrayList lists[] = new ArrayList[5];
-        // МЕНЮ
-        // 1. Создать список (0..4) - создаете нужный список
-        // 2. Показть все списки (показываются только ненулевые)
-        // 3. Работа со списком - попросить ввести номер спика
-        //       1. Добавить
-        //       2. Удалить
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Меню:");
+        System.out.println("1. Создать список");
+        System.out.println("2. Показать все списки");
+        System.out.println("3. Работа со списком");
+        System.out.println("4. Выход");
+        int countLists = 0;// число созданных списков
         while (true) {
-            System.out.println("Меню:");
-            System.out.println("1. Создать список");
-            System.out.println("2. Показать все списки");
-            System.out.println("3. Работа со списком");
-            System.out.println("4. Выход");
+
             int command = scanner.nextInt();
             switch (command) {
                 case 1:
                     System.out.println("Введите номер создаваемого списка: [0..4]");
                     int listNumber = scanner.nextInt();
-                    lists[listNumber] = new ArrayList();
+                    if (listNumber >= 0 && listNumber < 5) {
+                        lists[listNumber] = new ArrayList();
+                        countLists++;
+                    } else {
+                        System.out.println("Введен неправильный номер! Только [0..4]");
+                    }
+
                     break;
                 case 2:
-                    int notEmpty = 0;
+
                     for(int i = 0; i < lists.length; i++) {
-                        if (lists[i].size() > 0) {
-                            System.out.println(lists[i]);
-                            notEmpty++;
+                        if (lists[i] != null) {
+                            System.out.println("Список[" + i + "]: " + lists[i].output());
+
                         }
-                    }
-                    if (notEmpty == 0) {
-                        System.out.println("Все списки пусты");
                     }
                     break;
                 case 3:
-                    System.out.print("Работа со списками. Введите номер списка: ");
-                    listNumber = scanner.nextInt();
+
+                    if (countLists > 0) {
+                        System.out.print("Работа со списками. Введите номер списка: ");
+                        listNumber = scanner.nextInt();
+                        while  (lists[listNumber] == null) {
+                            System.out.println("Список не создан! Введите номер созданного списка: ");
+                            listNumber = scanner.nextInt();
+                        }
+                    } else {
+                        System.out.println("Сначала создайте хотя бы один список!");
+                        break;
+                    }
+
 
                     System.out.println("Меню работы со списком:");
                     System.out.println("1. Показать массив");
@@ -62,9 +72,7 @@ public class Main {
 
                         switch (command) {
                             case 1:
-                                for (int i = 0; i < lists[listNumber].size(); i++) {
-                                    System.out.printf("[%d] ", lists[listNumber].get(i));
-                                }
+                                System.out.println(lists[listNumber].output());
                                 break;
                             case 2:
                                 System.out.print("Введите элемент для добавления в начало массива: ");
@@ -85,7 +93,13 @@ public class Main {
 
                             case 5:
                                 System.out.print("Введите индекс: ");
-                                lists[listNumber].get(scanner.nextInt());
+                                index = scanner.nextInt();
+                                if (lists[listNumber].get(index) != -1) {
+                                    System.out.println(lists[listNumber].get(index));
+                                } else {
+                                    System.err.println("Неправильный индекс!");
+                                }
+
                                 break;
 
                             case 6:
@@ -93,7 +107,7 @@ public class Main {
                                 element = scanner.nextInt();
                                 System.out.print("Введите индекс: ");
                                 index = scanner.nextInt();
-                                lists[listNumber].insert(element, index);
+                                lists[listNumber].replace(element, index);
                                 break;
 
                             case 7:
@@ -116,18 +130,17 @@ public class Main {
                                 break;
 
                             case 11:
+                                System.out.println("Меню:");
+                                System.out.println("1. Создать список");
+                                System.out.println("2. Показать все списки");
+                                System.out.println("3. Работа со списком");
+                                System.out.println("4. Выход");
                                 break;
 
                             default:
-                                System.out.println("Команда не верна!");
+                                System.err.println("Команда не верна!");
                                 break;
-
-
                         }
-
-
-
-
                     }
                     break;
                 case 4:
