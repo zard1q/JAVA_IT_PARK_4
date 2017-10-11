@@ -1,7 +1,4 @@
 package ru.itpark;
-
-
-
 import java.time.LocalTime;
 
 public class TVShows {
@@ -9,14 +6,10 @@ public class TVShows {
     private LocalTime endTime;
     private String name;
 
-
-
-
     public TVShows (LocalTime beginTime, LocalTime endTime, String name) {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.name = name;
-
     }
 
     public String getName() {
@@ -30,5 +23,4 @@ public class TVShows {
     public LocalTime getEndTime() {
         return endTime;
     }
-
 }

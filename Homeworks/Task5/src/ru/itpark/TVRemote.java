@@ -11,10 +11,8 @@ public class TVRemote {
     }
 
     public void switchChannel() {
-
         System.out.println("Введите название канала('Первый', 'Россия', '2x2'(для выключения введите 'Выключить')): ");
         Scanner scanner = new Scanner(System.in);
-
         while (true){
             count = 0;
             name = scanner.next();

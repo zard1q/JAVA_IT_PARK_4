@@ -42,11 +42,9 @@ public class Main {
                 new Channels("Россия", russia),
                 new Channels("2x2", twoXtwo)
         };
-        TV myTV = new TV(channels, "Телек");
+        TV myTV = new TV(channels);
 
         TVRemote myTVRemote = new TVRemote(myTV);
-//        System.out.println(channels[1].getName());
-////        myTV.onChannel(channels[1]);
         myTVRemote.switchChannel();
 
 
