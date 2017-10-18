@@ -1,10 +1,12 @@
 package ru.itpark;
 
 public class TV {
-    private Channels channels[];
+    private static TV singleTV = new TV();
+    private static Channels channels[];
 
-    public TV(Channels[] channels) {
-        this.channels = channels;
+    public static TV getInstance(Channels[] channels) {
+        TV.channels = channels;
+        return singleTV;
     }
 
     public void onChannel(Channels channel) {
@@ -12,6 +14,7 @@ public class TV {
     }
 
     public Channels[] getChannels() {
+
         return channels;
     }
 

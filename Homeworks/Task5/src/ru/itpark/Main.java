@@ -42,7 +42,7 @@ public class Main {
                 new Channels("Россия", russia),
                 new Channels("2x2", twoXtwo)
         };
-        TV myTV = new TV(channels);
+        TV myTV = TV.getInstance(channels);
 
         TVRemote myTVRemote = new TVRemote(myTV);
         myTVRemote.switchChannel();
