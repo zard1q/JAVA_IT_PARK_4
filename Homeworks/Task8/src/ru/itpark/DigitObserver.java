@@ -1,6 +1,6 @@
 package ru.itpark;
 
-public class meetDigit implements Observer {
+public class DigitObserver implements Observer {
     private int count = 0;
     @Override
     public void handleEvent(char[] symbols) {

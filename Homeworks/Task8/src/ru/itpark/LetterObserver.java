@@ -1,6 +1,6 @@
 package ru.itpark;
 
-public class meetLetter implements Observer {
+public class LetterObserver implements Observer {
     private int count = 0;
     @Override
     public void handleEvent(char[] symbols) {

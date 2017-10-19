@@ -1,7 +1,8 @@
 package ru.itpark;
 
 public class Splitter implements Observer {
-    private char[] word = new char[100];
+    private char[] charArray = new char[50];
+
     int countString = 0;
     int countChar = 0;
     private String[] stringParsed = new String[30];
@@ -10,11 +11,14 @@ public class Splitter implements Observer {
     public void handleEvent(char[] symbols) {
         for (char symbol:symbols) {
             if ((int) symbol != ' ') {
-                word[countChar] = symbol;
+                charArray[countChar] = symbol;
                 countChar++;
             } else if(countChar > 0) {
+                char[] word = new char[countChar];
+                for(int i = 0; i < countChar;i++) {
+                    word[i] = charArray[i];
+                }
                 stringParsed[countString] = new String(word);
-                word = new char[100];
                 countString++;
                 countChar = 0;
             }

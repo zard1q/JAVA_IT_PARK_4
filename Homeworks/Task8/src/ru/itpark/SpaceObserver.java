@@ -1,6 +1,6 @@
 package ru.itpark;
 
-public class meetSpace implements Observer {
+public class SpaceObserver implements Observer {
     private int count = 0;
 
     @Override

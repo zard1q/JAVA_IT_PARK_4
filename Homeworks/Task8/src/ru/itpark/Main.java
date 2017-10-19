@@ -9,8 +9,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите строку: ");
         String input = scanner.nextLine();
-        Parser parser = Parser.getInstance(input);
-        parser.parseString();
-	// write your code here
-    }
+        Parser parser = Parser.builder()
+                .addObserver(new Splitter())
+                .addObserver(new LetterObserver())
+                .addObserver(new SpaceObserver())
+                .addObserver(new DigitObserver())
+                .build();
+        parser.inputString(input);
+
+	}
 }

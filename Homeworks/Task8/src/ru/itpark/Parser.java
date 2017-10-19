@@ -1,23 +1,38 @@
 package ru.itpark;
 
-public class Parser {
-    private static Parser instance = new Parser();
-    private static String stringInput;
+public class Parser implements Observable {
 
-    public static Parser getInstance(String input) {
-        Parser.stringInput = input;
-        return instance;
+    private Observer[] observers = new Observer[4];
+    private int count = 0;
+    private char[] symbols;
+
+    private Parser(Builder builder) {
+        this.observers = builder.observers;
+        this.count = builder.count;
     }
-    public void parseString() {
-        char[] symbols = (stringInput + " ").toCharArray();
-        System.out.println();
-        InputString inputString = new InputString(symbols);
-              //.addObserver();
-        inputString.addObserver(new Splitter());
-        inputString.addObserver(new meetLetter());
-        inputString.addObserver(new meetSpace());
-        inputString.addObserver(new meetDigit());
-        inputString.event();
+
+    public void inputString(String stringInput) {
+        symbols = (stringInput + " ").toCharArray();
+        for (int i = 0; i < count; i++) {
+            observers[i].handleEvent(symbols);
+        }
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+    public static class Builder {
+        private Observer[] observers = new Observer[4];
+        private int count =0;
+
+        public Builder addObserver(Observer observer) {
+            observers[count] = observer;
+            count++;
+            return this;
+        }
+        public Parser build() {
+            return new Parser(this);
+        }
     }
 
 
