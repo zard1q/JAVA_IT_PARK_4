@@ -8,7 +8,5 @@ public class Main {
         System.out.println(humans.getByAge(23));
         System.out.println(humans.getByName("Инокентий"));
         System.out.println(humans.getByCitizen("Россия"));
-
-
     }
 }
